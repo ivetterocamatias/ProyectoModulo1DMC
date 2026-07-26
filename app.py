@@ -1,37 +1,40 @@
 import streamlit as st
 
 st.title("Proyecto Módulo 1 Fundamentals")
-st.sidebar.title("Parámetros")
-
 
 col1, col2, col3 = st.columns([1,2,1])
 
 with col2:
     st.image("Python_logo.png", width=600)
 
-
+# Menú lateral
 modulo = st.sidebar.selectbox(
     "Menú",
     ("Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4")
 )
 if modulo == "Home":
 
-    st.title("🐍 Python Fundamentals – Streamlit Project")
+    st.title("☕ Coffee Shop Manager")
+    col1, col2, col3 = st.columns([1,2,1])
 
-    st.subheader("Proyecto Aplicado en Streamlit")
+with col2:
+    st.image("Pytho.png", width=600)
 
-    st.write("""
+    st.subheader(Datos generales de autora)
+
+    st.write("
     **Estudiante:** Ivette Roca Matias
     
     **Módulo:** Módulo 1 – Python Fundamentals
     
-    **Información general de la estudiante:** Ingeniera Pesquera, cursando una maestría en Ciencia y Tecnología de Alimentos
+    **Información general de la estudiante:** Ingeniera Pesquera cursando una maestría en Ciencia y Tecnología de Alimentos
     
     **Año:** 2026
-    """)
+    ")
 
     st.markdown("""
-    ### Descripción del proyecto
+    
+    # Descripción del proyecto
 
     Esta aplicación fue desarrollada como parte del Proyecto 1 del módulo
     **Python Fundamentals**. Su objetivo es integrar los conceptos
