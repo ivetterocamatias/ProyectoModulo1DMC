@@ -152,8 +152,8 @@ elif modulo == "Ejercicio 2":
     Posteriormente, el sistema mostrará la lista de productos registrados.
     """) 
 
-    # Crear arrays vacíos de NumPy para almacenar datos
-    
+    # Crear arrays NumPy en memoria
+
     if "nombres" not in st.session_state:
         st.session_state.nombres = np.array([])
 
@@ -169,65 +169,79 @@ elif modulo == "Ejercicio 2":
     if "totales" not in st.session_state:
         st.session_state.totales = np.array([])
 
-    # Formulario para ingresar productos
-    
+
+    # Formulario
+
     st.subheader("Ingresar nuevo producto")
 
-    nombre = st.text_input("Nombre del producto")
-    
+
+    nombre = st.text_input(
+        "Nombre del producto"
+    )
+
+
     categoria = st.selectbox(
         "Categoría",
-        ["Café", "Postre", "Bebida fría", "Snack"]
+        [
+            "Café",
+            "Postre",
+            "Bebida fría",
+            "Snack"
+        ]
     )
-    
+
+
     precio = st.number_input(
-        "Precio (s/)",
+        "Precio",
         min_value=0.0,
         step=0.5
     )
-    
+
+
     cantidad = st.number_input(
         "Cantidad",
         min_value=1,
         step=1
     )
 
-    # Botón para registrar producto
+
+    # Registrar producto
 
     if st.button("Registrar producto"):
 
         if nombre.strip() == "":
-            
-            st.warning("Ingrese un nombre para el producto.")
+            st.error("Debe ingresar un nombre de producto.")
 
         else:
-
-            # Calcular total
 
             total = precio * cantidad
 
 
-            # Guardar datos en los arrays de NumPy
+            # Guardar datos en arrays NumPy
 
             st.session_state.nombres = np.append(
                 st.session_state.nombres,
                 nombre
             )
 
+
             st.session_state.categorias = np.append(
                 st.session_state.categorias,
                 categoria
             )
+
 
             st.session_state.precios = np.append(
                 st.session_state.precios,
                 precio
             )
 
+
             st.session_state.cantidades = np.append(
                 st.session_state.cantidades,
                 cantidad
             )
+
 
             st.session_state.totales = np.append(
                 st.session_state.totales,
@@ -236,41 +250,29 @@ elif modulo == "Ejercicio 2":
 
 
             st.success(
-                "Producto registrado correctamente."
+                "Producto registrado correctamente"
             )
 
 
-    # Recuperar datos desde session_state
-
-    nombres = st.session_state.nombres
-    categorias = st.session_state.categorias
-    precios = st.session_state.precios
-    cantidades = st.session_state.cantidades
-    totales = st.session_state.totales
-
-
-    # Crear DataFrame con Pandas
+    # Crear DataFrame
 
     df = pd.DataFrame(
         {
-            "Producto": nombres,
-            "Categoría": categorias,
-            "Precio ($)": precios,
-            "Cantidad": cantidades,
-            "Total ($)": totales
+            "Producto": st.session_state.nombres,
+            "Categoría": st.session_state.categorias,
+            "Precio": st.session_state.precios,
+            "Cantidad": st.session_state.cantidades,
+            "Total": st.session_state.totales
         }
     )
 
 
     # Mostrar tabla
 
-    st.subheader("📋 Registro de productos")
+    st.subheader("Registro de productos")
 
-    if len(df) > 0:
-        st.dataframe(df)
+    st.dataframe(df)
 
-    else:
-        st.info("Aún no hay productos registrados.")
 
 # Ejercicio 3
 
@@ -513,7 +515,7 @@ elif modulo == "Ejercicio 4":
     st.subheader("Actualizar empleado")
 
 
-    if len(st.session_state.empleados > 0:
+    if len(st.session_state.empleados) > 0:
 
         nombres = [
 
