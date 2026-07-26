@@ -137,4 +137,53 @@ elif modulo == "Ejercicio 1":
         st.error("El flujo de caja está en contra.")
 
 
+# Información en Ejercicio 2
 
+elif modulo == "Ejercicio 2":
+
+    st.header("☕ Registros")
+
+    st.markdown("""
+    Registre los productos disponibles en la cafetería.
+    Para cada producto se ingresará el nombre, la categoría y el precio de venta.
+    Posteriormente, el sistema mostrará la lista de productos registrados.
+    """) 
+
+    # Crear la lista de productos
+    
+    if "Productos" not in st.session_state:
+        st.session_state.productos = []
+
+    # Ingreso de datos
+    
+    nombre = st.text_input("Nombre del producto")
+
+    categoria = st.selectbox(
+        "Categoría",
+        ["Café", "Bebida", "Postre", "Snack"]
+    )
+
+    precio = st.number_input(
+        "Precio (S/)",
+        min_value=0.00
+    )
+
+    # Botón para registrar
+    
+    if st.button("Registrar producto"):
+
+        producto = {
+            "Producto": nombre,
+            "Categoría": categoria,
+            "Precio": precio
+        }
+
+        st.session_state.productos.append(producto)
+
+        st.success("Producto registrado correctamente.")
+
+    # Mostrar productos
+    
+    st.subheader("Productos registrados")
+
+    st.dataframe(st.session_state.productos)
