@@ -153,8 +153,9 @@ elif modulo == "Ejercicio 2":
     # Crear arrays vacíos de NumPy para almacenar datos
     
     import numpy as np
+    import pandas as pd
     
-    Productos = np.array([])
+    nombres = np.array([])
     categorias = np.array([])
     precios = np.array([])
     cantidades = np.array([])
