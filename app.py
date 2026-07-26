@@ -193,7 +193,9 @@ elif modulo == "Ejercicio 2":
     )
 
     # Botón para registrar producto
-    
+
+    if st.button("Registrar producto"):
+
         if nombre.strip() == "":
             
             st.warning("Ingrese un nombre para el producto.")
