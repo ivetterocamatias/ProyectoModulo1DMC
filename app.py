@@ -619,3 +619,5 @@ elif modulo == "Ejercicio 4":
     else:
 
         st.info(
+            "No hay empleados para eliminar"
+        )
