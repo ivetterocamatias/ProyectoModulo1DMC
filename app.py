@@ -24,36 +24,36 @@ if modulo == "Home":
     with col2:
         st.image("Coffee shop_logo.png", width=600)
     
-        st.subheader("Datos generales de autora")
+    st.subheader("Datos generales de autora")
+
+    st.write("""
+    **Estudiante:** Ivette Roca Matias
     
-        st.write("""
-        **Estudiante:** Ivette Roca Matias
-        
-        **Módulo:** Módulo 1 – Python Fundamentals
-        
-        **Información general de la estudiante:** Ingeniera Pesquera cursando una maestría en Ciencia y Tecnología de Alimentos
-        
-        **Año:** 2026
-        """)
+    **Módulo:** Módulo 1 – Python Fundamentals
     
-        st.markdown("""
-        
-        # Descripción del proyecto
+    **Información general de la estudiante:** Ingeniera Pesquera cursando una maestría en Ciencia y Tecnología de Alimentos
     
-        Coffee Shop Manager es una aplicación interactiva desarrollada en Streamlit
-        para apoyar la gestión básica de una cafetería. A través de distintos módulos,
-        el usuario podrá registrar ingresos y gastos, administrar productos,
-        realizar cálculos y gestionar información mediante una interfaz sencilla.
-        """)
+    **Año:** 2026
+    """)
+
+    st.markdown("""
     
-        st.markdown("""
-        ### Tecnologías utilizadas
-    
-        - 🐍 Python
-        - 🎈 Streamlit
-        - 📊 NumPy
-        - 🐼 Pandas
-        """)
+    # Descripción del proyecto
+
+    Coffee Shop Manager es una aplicación interactiva desarrollada en Streamlit
+    para apoyar la gestión básica de una cafetería. A través de distintos módulos,
+    el usuario podrá registrar ingresos y gastos, administrar productos,
+    realizar cálculos y gestionar información mediante una interfaz sencilla.
+    """)
+
+    st.markdown("""
+    ### Tecnologías utilizadas
+
+    - 🐍 Python
+    - 🎈 Streamlit
+    - 📊 NumPy
+    - 🐼 Pandas
+    """)
 
 # Información en Ejercicio 1
 
