@@ -366,12 +366,11 @@ elif modulo == "Ejercicio 4":
 # Crear memoria de empleados
 
     if "empleados" not in st.session_state:
-
         st.session_state.empleados = []
 
 # Creación de registro
 
-    st.subheader("➕ Registrar empleado")
+    st.subheader("Registrar empleado")
 
     nombre = st.text_input(
         "Nombre del empleado"
@@ -402,10 +401,17 @@ elif modulo == "Ejercicio 4":
 
     if st.button("Crear empleado"):
 
+    if nombre_empleado.strip() == "":
+
+        st.error(
+            "Debe ingresar un nombre de empleado."
+        )
+
+    else:
         try:
 
             empleado = Empleado(
-                nombre,
+                nombre_empleado,
                 salario,
                 bono,
                 descuento
@@ -462,7 +468,7 @@ elif modulo == "Ejercicio 4":
     st.subheader("Actualizar empleado")
 
 
-    if len(st.session_state.ventas) > 0:
+    if len(st.session_state.empleados > 0:
 
         nombres = [
 
@@ -475,14 +481,16 @@ elif modulo == "Ejercicio 4":
 
         seleccionado = st.selectbox(
             "Seleccione empleado",
-            nombres
+            nombres,
+            key="actualizar_empleado"
         )
 
 
         nuevo_salario = st.number_input(
             "Nuevo salario",
             min_value=1.0,
-            step=50.0
+            step=50.0,
+            key="nuevo_salario"
         )
 
 
@@ -490,7 +498,17 @@ elif modulo == "Ejercicio 4":
             "Nuevo bono (%)",
             min_value=0.0,
             max_value=100.0,
-            step=1.0
+            step=1.0,
+            key="nuevo_bono"
+        )
+
+        
+        nuevo_descuento = st.number_input(
+            "Nuevo descuento (%)",
+            min_value=0.0,
+            max_value=100.0,
+            step=1.0,
+            key="nuevo_descuento"
         )
 
 
@@ -502,14 +520,15 @@ elif modulo == "Ejercicio 4":
 
 
                     empleado.salario_base = nuevo_salario
-
                     empleado.porcentaje_bono = nuevo_bono
+                    empleado.porcentaje_descuento = descuento
 
 
                     st.success(
-                        "Empleado actualizado"
+                        "Empleado actualizado correctamente."
                     )
 
+                  break
 
 # Eliminar
 
