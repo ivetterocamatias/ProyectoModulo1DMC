@@ -21,43 +21,43 @@ if modulo == "Home":
     st.title("☕ Coffee Shop Manager")
     col1, col2, col3 = st.columns([1,2,1])
 
-with col2:
-    st.image("Coffee shop_logo.png", width=600)
-
-    st.subheader("Datos generales de autora")
-
-    st.write("""
-    **Estudiante:** Ivette Roca Matias
+    with col2:
+        st.image("Coffee shop_logo.png", width=600)
     
-    **Módulo:** Módulo 1 – Python Fundamentals
+        st.subheader("Datos generales de autora")
     
-    **Información general de la estudiante:** Ingeniera Pesquera cursando una maestría en Ciencia y Tecnología de Alimentos
+        st.write("""
+        **Estudiante:** Ivette Roca Matias
+        
+        **Módulo:** Módulo 1 – Python Fundamentals
+        
+        **Información general de la estudiante:** Ingeniera Pesquera cursando una maestría en Ciencia y Tecnología de Alimentos
+        
+        **Año:** 2026
+        """)
     
-    **Año:** 2026
-    """)
-
-    st.markdown("""
+        st.markdown("""
+        
+        # Descripción del proyecto
     
-    # Descripción del proyecto
-
-    Coffee Shop Manager es una aplicación interactiva desarrollada en Streamlit
-    para apoyar la gestión básica de una cafetería. A través de distintos módulos,
-    el usuario podrá registrar ingresos y gastos, administrar productos,
-    realizar cálculos y gestionar información mediante una interfaz sencilla.
-    """)
-
-    st.markdown("""
-    ### Tecnologías utilizadas
-
-    - 🐍 Python
-    - 🎈 Streamlit
-    - 📊 NumPy
-    - 🐼 Pandas
-    """)
+        Coffee Shop Manager es una aplicación interactiva desarrollada en Streamlit
+        para apoyar la gestión básica de una cafetería. A través de distintos módulos,
+        el usuario podrá registrar ingresos y gastos, administrar productos,
+        realizar cálculos y gestionar información mediante una interfaz sencilla.
+        """)
+    
+        st.markdown("""
+        ### Tecnologías utilizadas
+    
+        - 🐍 Python
+        - 🎈 Streamlit
+        - 📊 NumPy
+        - 🐼 Pandas
+        """)
 
 # Información en Ejercicio 1
 
-    elif modulo == "Ejercicio 1":
+elif modulo == "Ejercicio 1":
 
     st.header("☕ Flujo diario de caja")
 
@@ -65,13 +65,16 @@ with col2:
     Registre las ventas y los gastos de la cafetería durante la jornada.
     El sistema calculará automáticamente el total de ingresos, el total de
     gastos y el saldo disponible al finalizar el día.
-    """)
+    """) 
 
+     
     # Crear la lista de movimientos la primera vez
+    
     if "movimientos" not in st.session_state:
         st.session_state.movimientos = []
 
     # Entrada de datos
+    
     concepto = st.text_input("Concepto")
     tipo = st.selectbox("Tipo de movimiento", ["Ingreso", "Gasto"])
     valor = st.number_input("Valor (s/.)", min_value=0.0)
@@ -101,10 +104,10 @@ with col2:
     for movimiento in st.session_state.movimientos:
 
         if movimiento["Tipo"] == "Ingreso":
-            total_ingresos = movimiento["Valor"]
+            total_ingresos += movimiento["Valor"]
 
         else:
-            total_gastos = movimiento["Valor"]
+            total_gastos += movimiento["Valor"]
 
     saldo = total_ingresos - total_gastos
 
