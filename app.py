@@ -422,7 +422,7 @@ elif modulo == "Ejercicio 4":
     )
 
     salario = st.number_input(
-        "Salario base",
+        "Salario base (s/)",
         min_value=1.0,
         step=50.0
     )
