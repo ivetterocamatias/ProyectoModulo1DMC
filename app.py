@@ -31,14 +31,14 @@ if modulo == "Home":
     
     **Módulo:** Módulo 1 – Python Fundamentals
     
-    **Información general de la estudiante:** Ingeniera Pesquera cursando una maestría en Ciencia y Tecnología de Alimentos
+    **Información general de la estudiante:** Ingeniera pesquera cursando una maestría en Ciencia y Tecnología de Alimentos
     
     **Año:** 2026
     """)
 
     st.markdown("""
     
-    # Descripción del proyecto
+    ### Descripción del proyecto
 
     Coffee Shop Manager es una aplicación interactiva desarrollada en Streamlit
     para apoyar la gestión básica de una cafetería. A través de distintos módulos,
