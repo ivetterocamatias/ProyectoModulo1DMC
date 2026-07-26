@@ -8,6 +8,7 @@ with col2:
     st.image("Python_logo.png", width=600)
 
 # Menú lateral
+
 modulo = st.sidebar.selectbox(
     "Menú",
     ("Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4")
@@ -22,7 +23,7 @@ with col2:
 
     st.subheader(Datos generales de autora)
 
-    st.write("
+    st.write("""
     **Estudiante:** Ivette Roca Matias
     
     **Módulo:** Módulo 1 – Python Fundamentals
@@ -30,7 +31,7 @@ with col2:
     **Información general de la estudiante:** Ingeniera Pesquera cursando una maestría en Ciencia y Tecnología de Alimentos
     
     **Año:** 2026
-    ")
+    """)
 
     st.markdown("""
     
