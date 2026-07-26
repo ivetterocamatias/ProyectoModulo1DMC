@@ -53,7 +53,7 @@ if modulo == "Home":
     ### Tecnologías utilizadas
 
     - 🐍 Python
-    - 🎈 Streamlit
+    - 👑 Streamlit
     - 📊 NumPy
     - 🐼 Pandas
     """)
