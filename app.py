@@ -142,7 +142,7 @@ elif modulo == "Ejercicio 1":
 
 elif modulo == "Ejercicio 2":
 
-    st.header("☕ Registros")
+    st.header("☕ Registro de inventario")
 
     st.markdown("""
     Registre los productos disponibles en la cafetería.
