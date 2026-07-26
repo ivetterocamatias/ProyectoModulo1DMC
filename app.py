@@ -245,9 +245,9 @@ elif modulo == "Ejercicio 3":
             ]
         )
     
-    # Selección de funciones
+    # Selección de función
     
-    st.header("Selector de función")
+    st.header("Parámetro a evaluar")
     
     
     funcion = st.selectbox(
@@ -257,7 +257,7 @@ elif modulo == "Ejercicio 3":
         ]
     )
     
-    # Widgets
+    # Widgets para ingresar parámetros
     
     st.header("Ingresar datos del proceso")
     
@@ -294,7 +294,6 @@ elif modulo == "Ejercicio 3":
                 oportunidades
             )
     
-    
             # Mostrar resultado
     
             st.success("Cálculo realizado correctamente")
@@ -305,13 +304,11 @@ elif modulo == "Ejercicio 3":
                 resultado["dpmo"]
             )
     
-    
             st.write(
                 "Rendimiento del proceso:",
                 resultado["rendimiento_pct"],
                 "%"
             )
-    
     
             # Guardar histórico
     
@@ -324,7 +321,6 @@ elif modulo == "Ejercicio 3":
                     "Rendimiento (%)": [resultado["rendimiento_pct"]]
                 }
             )
-    
     
             st.session_state.historial = pd.concat(
                 [
@@ -342,5 +338,6 @@ elif modulo == "Ejercicio 3":
     # Mostrar histórico
     
     st.header("Histórico de evaluaciones")
-    
     st.dataframe(st.session_state.historial)
+
+
