@@ -446,7 +446,7 @@ elif modulo == "Ejercicio 4":
 
     if st.button("Crear empleado", key="crear_empleado"):
 
-        if nombre_empleado.strip() == "":
+        if nombre.strip() == "":
     
             st.error(
                 "Debe ingresar un nombre de empleado."
