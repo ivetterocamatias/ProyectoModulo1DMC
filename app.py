@@ -399,7 +399,7 @@ elif modulo == "Ejercicio 3":
 
 elif modulo == "Ejercicio 4":
 
-    from librería_clases_proyecto1 import Empleado
+    from libreria_clases_proyecto1 import Empleado
 
     st.header("☕ Gestión de empleados")
 
