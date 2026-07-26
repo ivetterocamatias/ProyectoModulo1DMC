@@ -169,7 +169,7 @@ elif modulo == "Ejercicio 2":
     
     categoria = st.selectbox(
         "Categoría",
-        ["Café", "Postre", "Bebida fría", "Comida"]
+        ["Café", "Postre", "Bebida fría", "Snack"]
     )
     
     precio = st.number_input(
