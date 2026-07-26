@@ -24,10 +24,6 @@ modulo = st.sidebar.selectbox(
 if modulo == "Home":
 
     st.title("☕ Coffee Shop Manager")
-    col1, col2, col3 = st.columns([1,2,1])
-
-    with col2:
-        st.image("Coffee shop_logo.png", width=600)
     
     st.subheader("Datos generales de autora")
 
