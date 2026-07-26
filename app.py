@@ -18,8 +18,11 @@ if modulo == "Home":
 
     st.write("""
     **Estudiante:** Ivette Roca Matias
+    
     **Módulo:** Módulo 1 – Python Fundamentals
-    **Información general del estudiante:** Ingeniera Pesquera, cursando una maestría en Ciencia y Tecnología de Alimentos
+    
+    **Información general de la estudiante:** Ingeniera Pesquera, cursando una maestría en Ciencia y Tecnología de Alimentos
+    
     **Año:** 2026
     """)
 
