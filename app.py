@@ -41,7 +41,7 @@ if modulo == "Home":
     ### Descripción del proyecto
 
     Coffee Shop Manager es una aplicación interactiva desarrollada en Streamlit
-    para apoyar la gestión básica de una cafetería. A través de distintos módulos,
+    para apoyar la gestión básica de una cafetería. A través de las distintas secciones,
     el usuario podrá registrar ingresos y gastos, administrar productos,
     realizar cálculos y gestionar información mediante una interfaz sencilla.
     """)
