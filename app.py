@@ -52,7 +52,67 @@ if modulo == "Home":
     - 🐼 Pandas
     """)
 
-    
+elif modulo == "Ejercicio 1":
+
+    st.header("Ejercicio 1 - Flujo de caja con listas")
+
+    st.markdown("""
+    En este ejercicio se registran movimientos financieros utilizando listas.
+    Cada movimiento puede ser un ingreso o un gasto y posteriormente se calcula
+    el saldo final.
+    """)
+
+    # Crear la lista una sola vez
+    if "movimientos" not in st.session_state:
+        st.session_state.movimientos = []
+
+    # Entrada de datos
+    concepto = st.text_input("Concepto")
+    tipo = st.selectbox("Tipo de movimiento", ["Ingreso", "Gasto"])
+    valor = st.number_input("Valor", min_value=0.0)
+
+    # Botón
+    if st.button("Agregar movimiento"):
+
+        movimiento = {
+            "Concepto": concepto,
+            "Tipo": tipo,
+            "Valor": valor
+        }
+
+        st.session_state.movimientos.append(movimiento)
+
+        st.success("Movimiento agregado correctamente.")
+
+    # Mostrar tabla
+    st.subheader("Movimientos registrados")
+
+    st.dataframe(st.session_state.movimientos)
+
+    # Cálculos
+    total_ingresos = 0
+    total_gastos = 0
+
+    for movimiento in st.session_state.movimientos:
+
+        if movimiento["Tipo"] == "Ingreso":
+            total_ingresos += movimiento["Valor"]
+
+        else:
+            total_gastos += movimiento["Valor"]
+
+    saldo = total_ingresos - total_gastos
+
+    # Métricas
+    st.metric("Total ingresos", total_ingresos)
+    st.metric("Total gastos", total_gastos)
+    st.metric("Saldo final", saldo)
+
+    # Resultado
+    if saldo >= 0:
+        st.success("El flujo de caja está a favor.")
+    else:
+        st.error("El flujo de caja está en contra.")
 
 
 
