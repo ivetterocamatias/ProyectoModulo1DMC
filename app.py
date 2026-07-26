@@ -399,9 +399,7 @@ elif modulo == "Ejercicio 3":
 
 elif modulo == "Ejercicio 4":
 
-    import pandas as pd
     from libreria_clases_proyecto1 import Empleado
-
 
     st.header("☕ Gestión de empleados")
 
@@ -446,7 +444,7 @@ elif modulo == "Ejercicio 4":
     )
 
 
-    if st.button("Crear empleado"):
+    if st.button("Crear empleado", key="crear_empleado"):
 
         if nombre_empleado.strip() == "":
     
@@ -559,12 +557,11 @@ elif modulo == "Ejercicio 4":
         )
 
 
-        if st.button("Actualizar empleado"):
+        if st.button("Actualizar empleado", key="actualizar_empleado"):
 
             for empleado in st.session_state.empleados:
 
                 if empleado.nombre == seleccionado:
-
 
                     empleado.salario_base = nuevo_salario
                     empleado.porcentaje_bono = nuevo_bono
@@ -579,6 +576,7 @@ elif modulo == "Ejercicio 4":
     else:
     
         st.info("No hay empleados para actualizar")
+        
 # Eliminar
 
     st.subheader("Eliminar registro del empleado")
@@ -599,7 +597,7 @@ elif modulo == "Ejercicio 4":
         )
 
 
-        if st.button("Eliminar empleado"):
+        if st.button("Eliminar empleado", key="boton_eliminar"):
 
 
             st.session_state.empleados = [
