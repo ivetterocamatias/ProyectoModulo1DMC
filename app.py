@@ -57,7 +57,7 @@ with col2:
 
 # Información en Ejercicio 1
 
-elif modulo == "Ejercicio 1":
+    elif modulo == "Ejercicio 1":
 
     st.header("☕ Flujo diario de caja")
 
