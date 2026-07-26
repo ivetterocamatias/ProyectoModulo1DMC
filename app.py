@@ -21,7 +21,7 @@ if modulo == "Home":
 with col2:
     st.image("Coffee shop_logo.png", width=600)
 
-    st.subheader(Datos generales de autora)
+    st.subheader("Datos generales de autora")
 
     st.write("""
     **Estudiante:** Ivette Roca Matias
