@@ -529,7 +529,9 @@ elif modulo == "Ejercicio 4":
                     )
 
                   break
-
+    else:
+    
+        st.info("No hay empleados para actualizar")
 # Eliminar
 
     st.subheader("Eliminar registro del empleado")
