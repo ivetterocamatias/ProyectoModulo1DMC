@@ -3,7 +3,7 @@ import streamlit as st
 st.title("Proyecto Módulo 1 Fundamentals")
 st.sidebar.title("Parámetros")
 
-st.image("Python_logo.png")
+st.image("Python_logo.png", width=600)
 st.sidebar.image("DMC.png")
 
 modulo = st.sidebar.selectbox(
@@ -48,7 +48,7 @@ if modulo == "Home":
     - 🐼 Pandas
     """)
 
-    st.image("Python_logo.png", width=200)
+    
 
 
 
