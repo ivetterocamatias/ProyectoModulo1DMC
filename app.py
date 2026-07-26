@@ -456,7 +456,7 @@ elif modulo == "Ejercicio 4":
             try:
     
                 empleado = Empleado(
-                    nombre_empleado,
+                    nombre,
                     salario,
                     bono,
                     descuento
@@ -565,7 +565,7 @@ elif modulo == "Ejercicio 4":
 
                     empleado.salario_base = nuevo_salario
                     empleado.porcentaje_bono = nuevo_bono
-                    empleado.porcentaje_descuento = descuento
+                    empleado.porcentaje_descuento = nuevo_descuento
 
 
                     st.success(
@@ -593,6 +593,7 @@ elif modulo == "Ejercicio 4":
                 for empleado in st.session_state.empleados
 
             ],
+            
             key="eliminar_empleado"
         )
 
@@ -614,3 +615,7 @@ elif modulo == "Ejercicio 4":
             st.success(
                 "Empleado eliminado correctamente"
             )
+
+    else:
+
+        st.info(
