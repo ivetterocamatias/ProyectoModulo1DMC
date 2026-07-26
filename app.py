@@ -3,6 +3,10 @@ import streamlit as st
 st.title("Proyecto Módulo 1 Fundamentals")
 st.sidebar.title("Parámetros")
 
+
+col1, col2, col3 = st.columns([1,2,1])
+
+with col2:
 st.image("Python_logo.png", width=600)
 st.sidebar.image("DMC.png")
 
