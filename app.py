@@ -116,8 +116,6 @@ elif modulo == "Ejercicio 1":
 
     # Eliminar movimiento
 
-    st.dataframe(st.session_state.movimientos)
-
     if st.button("Eliminar último movimiento"):
         if len(st.session_state.movimientos) > 0:
             st.session_state.movimientos.pop()
