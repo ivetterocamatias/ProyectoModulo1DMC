@@ -6,7 +6,10 @@ st.sidebar.title("Parámetros")
 st.image("Python_logo.png")
 st.sidebar.image("DMC.png")
 
-modulo = st.sidebar.selectbox("Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4")
+mmodulo = st.sidebar.selectbox(
+    "Menú",
+    ("Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4")
+)
 if modulo == "Home":
 
     st.title("🐍 Python Fundamentals – Streamlit Project")
