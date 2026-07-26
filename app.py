@@ -77,9 +77,10 @@ elif modulo == "Ejercicio 1":
     
     concepto = st.text_input("Concepto")
     tipo = st.selectbox("Tipo de movimiento", ["Ingreso", "Gasto"])
-    valor = st.number_input("Valor (s/.)", min_value=0.0)
+    valor = st.number_input("Valor (s/)", min_value=0.0)
 
     # Botón para registar el movimiento
+    
     if st.button("Registrar movimiento"):
 
         movimiento = {
@@ -93,11 +94,13 @@ elif modulo == "Ejercicio 1":
         st.success("Movimiento registrado correctamente.")
 
     # Mostrar los movimientos registrados
+    
     st.subheader("Movimientos registrados")
 
     st.dataframe(st.session_state.movimientos)
 
     # Cálculos
+    
     total_ingresos = 0
     total_gastos = 0
 
@@ -113,27 +116,23 @@ elif modulo == "Ejercicio 1":
 
     # Eliminar movimiento
 
-    st.subheader("Eliminar movimiento")
+    st.dataframe(st.session_state.movimientos)
 
-    if len(st.session_state.movimientos) > 0:
-    
-        indice = st.selectbox(
-            "Seleccione el movimiento a eliminar",
-            range(len(st.session_state.movimientos)),
-            format_func=lambda i: f"{i+1}. {st.session_state.movimientos[i]['Concepto']} - {st.session_state.movimientos[i]['Valor']}"
-        )
-    
-        if st.button("Eliminar movimiento"):
-            st.session_state.movimientos.pop(indice)
-            st.success("Movimiento eliminado correctamente.")
-
+    if st.button("Eliminar último movimiento"):
+        if len(st.session_state.movimientos) > 0:
+            st.session_state.movimientos.pop()
+            st.success("Último movimiento eliminado.")
+            
     # Métricas
+    
+    st.subheader("Resumen")
 
     st.metric("Total ingresos", f"s/ {total_ingresos:.2f}")
     st.metric("Total gastos", f"s/ {total_gastos:.2f}")
     st.metric("Saldo final", f"s/ {saldo:.2f}")
 
     # Resultado
+    
     if saldo >= 0:
         st.success("El flujo de caja está a favor.")
     else:
