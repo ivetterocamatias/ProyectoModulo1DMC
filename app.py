@@ -326,7 +326,7 @@ elif modulo == "Ejercicio 3":
                     "Unidades producidas": [unidades],
                     "Oportunidades por unidad": [oportunidades],
                     "DPMO": [resultado["dpmo"]],
-                    "Rendimiento (%)": [resultado["rendimiento_pct"],f"]
+                    "Rendimiento (%)": [round(resultado["rendimiento_pct"],1)]
                 }
             )
     
