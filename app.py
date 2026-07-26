@@ -111,6 +111,22 @@ elif modulo == "Ejercicio 1":
 
     saldo = total_ingresos - total_gastos
 
+    # Eliminar movimiento
+
+    st.subheader("Eliminar movimiento")
+
+    if len(st.session_state.movimientos) > 0:
+    
+        indice = st.selectbox(
+            "Seleccione el movimiento a eliminar",
+            range(len(st.session_state.movimientos)),
+            format_func=lambda i: f"{i+1}. {st.session_state.movimientos[i]['Concepto']} - {st.session_state.movimientos[i]['Valor']}"
+        )
+    
+        if st.button("Eliminar movimiento"):
+            st.session_state.movimientos.pop(indice)
+            st.success("Movimiento eliminado correctamente.")
+
     # Métricas
 
     st.metric("Total ingresos", f"s/ {total_ingresos:.2f}")
