@@ -150,41 +150,71 @@ elif modulo == "Ejercicio 2":
     Posteriormente, el sistema mostrará la lista de productos registrados.
     """) 
 
-    # Crear la lista de productos
+    # Crear arrays vacíos de NumPy para almacenar datos
     
-    if "Productos" not in st.session_state:
-        st.session_state.productos = []
+    import numpy as np
+    
+    Productos = np.array([])
+    categorias = np.array([])
+    precios = np.array([])
+    cantidades = np.array([])
+    totales = np.array([])
 
-    # Ingreso de datos
+    # Crear formulario para ingresar productos
     
+    st.subheader("Ingresar nuevo producto")
+
     nombre = st.text_input("Nombre del producto")
-
+    
     categoria = st.selectbox(
         "Categoría",
-        ["Café", "Bebida", "Postre", "Snack"]
+        ["Café", "Postre", "Bebida fría", "Comida"]
     )
-
+    
     precio = st.number_input(
-        "Precio (S/)",
-        min_value=0.00
+        "Precio",
+        min_value=0.0,
+        step=0.5
+    )
+    
+    cantidad = st.number_input(
+        "Cantidad",
+        min_value=1,
+        step=1
     )
 
-    # Botón para registrar
+    # Botón para registrar producto
     
     if st.button("Registrar producto"):
-
-        producto = {
-            "Producto": nombre,
-            "Categoría": categoria,
-            "Precio": precio
-        }
-
-        st.session_state.productos.append(producto)
-
-        st.success("Producto registrado correctamente.")
-
-    # Mostrar productos
     
-    st.subheader("Productos registrados")
+        # Calcular total automáticamente
+        total = precio * cantidad
+    
+    
+        # Agregar cada dato al array correspondiente
+        nombres = np.append(nombres, nombre)
+        categorias = np.append(categorias, categoria)
+        precios = np.append(precios, precio)
+        cantidades = np.append(cantidades, cantidad)
+        totales = np.append(totales, total)
+    
+    
+        st.success("Producto registrado correctamente")
 
-    st.dataframe(st.session_state.productos)
+    # Crear DataFrame usando los arrays de NumPy
+
+    df = pd.DataFrame(
+        {
+            "Producto": nombres,
+            "Categoría": categorias,
+            "Precio": precios,
+            "Cantidad": cantidades,
+            "Total": totales
+        }
+    )
+
+    # Mostrar tabla final
+
+    st.subheader("Registro de productos")
+    st.dataframe(df)
+
