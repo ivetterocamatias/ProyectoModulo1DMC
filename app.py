@@ -326,7 +326,7 @@ elif modulo == "Ejercicio 3":
                     "Unidades producidas": [unidades],
                     "Oportunidades por unidad": [oportunidades],
                     "DPMO": [resultado["dpmo"]],
-                    "Rendimiento (%)": [round(resultado["rendimiento_pct"],1)]
+                    "Rendimiento (%)": [round(resultado["rendimiento_pct"],2)]
                 }
             )
     
@@ -338,7 +338,6 @@ elif modulo == "Ejercicio 3":
                 ignore_index=True
             )
     
-    
         except ValueError as error:
     
             st.error(error)
@@ -349,3 +348,146 @@ elif modulo == "Ejercicio 3":
     st.dataframe(st.session_state.historial)
 
 
+# Ejercicio 4
+
+elif modulo == "Ejercicio 4":
+
+    import pandas as pd
+    from libreria_clases_proyecto1 import calcular_ticket_promedio
+
+
+    st.header("☕ Gestión de ventas - CRUD")
+
+    st.markdown("""
+    Registre las ventas de la cafetería para 
+    calcular el ticket promedio y administrar los registros.
+    """)
+
+# Uso de clase
+
+    class Venta:
+
+        def __init__(self, producto, ventas_totales, clientes):
+            
+            self.producto = producto
+            self.ventas_totales = ventas_totales
+            self.clientes = clientes
+
+
+        def calcular(self):
+
+            resultado = calcular_ticket_promedio(
+                self.ventas_totales,
+                self.clientes
+            )
+
+            return resultado["ticket_promedio"]
+
+# Creación de almacenamiento
+
+    if "ventas" not in st.session_state:
+
+        st.session_state.ventas = []
+
+    st.subheader("Crear registro")
+
+
+    producto = st.text_input(
+        "Producto vendido"
+    )
+
+# Formulario
+
+    ventas_totales = st.number_input(
+        "Ventas totales ($)",
+        min_value=0.0,
+        step=1.0
+    )
+
+# Actualizar
+
+    st.subheader("Registros actuales")
+
+
+    if len(st.session_state.ventas) > 0:
+
+        df = pd.DataFrame(
+            st.session_state.ventas
+        )
+
+
+        st.dataframe(df)
+
+
+    else:
+
+        st.info(
+            "No existen registros todavía"
+        )
+
+    clientes = st.number_input(
+        "Número de clientes",
+        min_value=1,
+        step=1
+    )
+
+
+    if st.button("Agregar venta"):
+
+
+        nueva_venta = Venta(
+            producto,
+            ventas_totales,
+            clientes
+        )
+
+
+        ticket = nueva_venta.calcular()
+
+
+        registro = {
+
+            "Producto": producto,
+            "Ventas totales": ventas_totales,
+            "Clientes": clientes,
+            "Ticket promedio": ticket
+
+        }
+
+
+        st.session_state.ventas.append(registro)
+
+
+        st.success(
+            "Venta registrada correctamente"
+        )
+
+# Eliminar
+
+    st.subheader("Eliminar registro")
+
+
+    if len(st.session_state.ventas) > 0:
+
+
+        eliminar = st.number_input(
+
+            "Número de registro a eliminar",
+            min_value=0,
+            max_value=len(st.session_state.ventas)-1,
+            step=1
+
+        )
+
+
+        if st.button("Eliminar"):
+
+
+            st.session_state.ventas.pop(
+                eliminar
+            )
+
+
+            st.success(
+                "Registro eliminado"
+            )
