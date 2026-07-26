@@ -12,8 +12,8 @@ with col2:
 col1, col2, col3 = st.columns([1,2,1])
 
 with col2:
-    st.image("Python_logo.png", width=600)
-
+    st.sidebar.image("Python_logo.png", width=600)
+    
 modulo = st.sidebar.selectbox(
     "Menú",
     ("Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4")
