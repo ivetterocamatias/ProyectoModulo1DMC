@@ -1,4 +1,6 @@
 import streamlit as st
+import numpy as np
+import pandas as pd
 
 st.title("Proyecto Módulo 1 Fundamentals")
 
@@ -152,14 +154,20 @@ elif modulo == "Ejercicio 2":
 
     # Crear arrays vacíos de NumPy para almacenar datos
     
-    import numpy as np
-    import pandas as pd
-    
-    nombres = np.array([])
-    categorias = np.array([])
-    precios = np.array([])
-    cantidades = np.array([])
-    totales = np.array([])
+    if "nombres" not in st.session_state:
+        st.session_state.nombres = np.array([])
+
+    if "categorias" not in st.session_state:
+        st.session_state.categorias = np.array([])
+
+    if "precios" not in st.session_state:
+        st.session_state.precios = np.array([])
+
+    if "cantidades" not in st.session_state:
+        st.session_state.cantidades = np.array([])
+
+    if "totales" not in st.session_state:
+        st.session_state.totales = np.array([])
 
     # Crear formulario para ingresar productos
     
