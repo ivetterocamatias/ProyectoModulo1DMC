@@ -353,67 +353,98 @@ elif modulo == "Ejercicio 3":
 elif modulo == "Ejercicio 4":
 
     import pandas as pd
-    from libreria_clases_proyecto1 import calcular_ticket_promedio
+    from libreria_clases_proyecto1 import Empleado
 
 
-    st.header("☕ Gestión de ventas - CRUD")
+    st.header("☕ Gestión de empleados")
 
     st.markdown("""
-    Registre las ventas de la cafetería para 
-    calcular el ticket promedio y administrar los registros.
+    Registrar trabajadores de la cafetería para el cálculo automático de
+    bonos, descuentos y salario neto.
     """)
 
-# Uso de clase
+# Crear memoria de empleados
 
-    class Venta:
+    if "empleados" not in st.session_state:
 
-        def __init__(self, producto, ventas_totales, clientes):
-            
-            self.producto = producto
-            self.ventas_totales = ventas_totales
-            self.clientes = clientes
+        st.session_state.empleados = []
 
+# Creación de registro
 
-        def calcular(self):
+    st.subheader("➕ Registrar empleado")
 
-            resultado = calcular_ticket_promedio(
-                self.ventas_totales,
-                self.clientes
-            )
-
-            return resultado["ticket_promedio"]
-
-# Creación de almacenamiento
-
-    if "ventas" not in st.session_state:
-
-        st.session_state.ventas = []
-
-    st.subheader("Crear registro")
-
-
-    producto = st.text_input(
-        "Producto vendido"
+    nombre = st.text_input(
+        "Nombre del empleado"
     )
 
-# Formulario
+    salario = st.number_input(
+        "Salario base",
+        min_value=1.0,
+        step=50.0
+    )
 
-    ventas_totales = st.number_input(
-        "Ventas totales ($)",
+
+    bono = st.number_input(
+        "Porcentaje de bono (%)",
         min_value=0.0,
+        max_value=100.0,
         step=1.0
     )
 
-# Actualizar
 
-    st.subheader("Registros actuales")
+    descuento = st.number_input(
+        "Porcentaje de descuento (%)",
+        min_value=0.0,
+        max_value=100.0,
+        step=1.0
+    )
 
 
-    if len(st.session_state.ventas) > 0:
+    if st.button("Crear empleado"):
 
-        df = pd.DataFrame(
-            st.session_state.ventas
-        )
+        try:
+
+            empleado = Empleado(
+                nombre,
+                salario,
+                bono,
+                descuento
+            )
+
+
+            st.session_state.empleados.append(
+                empleado
+            )
+
+
+            st.success(
+                "Empleado registrado correctamente"
+            )
+
+
+        except ValueError as error:
+
+            st.error(error)
+
+# Formulario
+
+    st.subheader("Lista de empleados")
+
+
+    if len(st.session_state.empleados) > 0:
+
+
+        datos = []
+
+
+        for empleado in st.session_state.empleados:
+
+            datos.append(
+                empleado.resumen()
+            )
+
+
+        df = pd.DataFrame(datos)
 
 
         st.dataframe(df)
@@ -422,72 +453,98 @@ elif modulo == "Ejercicio 4":
     else:
 
         st.info(
-            "No existen registros todavía"
-        )
-
-    clientes = st.number_input(
-        "Número de clientes",
-        min_value=1,
-        step=1
-    )
-
-
-    if st.button("Agregar venta"):
-
-
-        nueva_venta = Venta(
-            producto,
-            ventas_totales,
-            clientes
+            "No hay empleados registrados"
         )
 
 
-        ticket = nueva_venta.calcular()
+# Actualizar
 
-
-        registro = {
-
-            "Producto": producto,
-            "Ventas totales": ventas_totales,
-            "Clientes": clientes,
-            "Ticket promedio": ticket
-
-        }
-
-
-        st.session_state.ventas.append(registro)
-
-
-        st.success(
-            "Venta registrada correctamente"
-        )
-
-# Eliminar
-
-    st.subheader("Eliminar registro")
+    st.subheader("Actualizar empleado")
 
 
     if len(st.session_state.ventas) > 0:
 
+        nombres = [
 
-        eliminar = st.number_input(
+            empleado.nombre
 
-            "Número de registro a eliminar",
-            min_value=0,
-            max_value=len(st.session_state.ventas)-1,
-            step=1
+            for empleado in st.session_state.empleados
 
+        ]
+
+
+        seleccionado = st.selectbox(
+            "Seleccione empleado",
+            nombres
         )
 
 
-        if st.button("Eliminar"):
+        nuevo_salario = st.number_input(
+            "Nuevo salario",
+            min_value=1.0,
+            step=50.0
+        )
 
 
-            st.session_state.ventas.pop(
-                eliminar
-            )
+        nuevo_bono = st.number_input(
+            "Nuevo bono (%)",
+            min_value=0.0,
+            max_value=100.0,
+            step=1.0
+        )
+
+
+        if st.button("Actualizar empleado"):
+
+            for empleado in st.session_state.empleados:
+
+                if empleado.nombre == seleccionado:
+
+
+                    empleado.salario_base = nuevo_salario
+
+                    empleado.porcentaje_bono = nuevo_bono
+
+
+                    st.success(
+                        "Empleado actualizado"
+                    )
+
+
+# Eliminar
+
+    st.subheader("Eliminar registro del empleado")
+
+
+    if len(st.session_state.empleados) > 0:
+
+
+        eliminar = st.selectbox(
+            "Empleado a eliminar",
+            [
+                empleado.nombre
+
+                for empleado in st.session_state.empleados
+
+            ],
+            key="eliminar_empleado"
+        )
+
+
+        if st.button("Eliminar empleado"):
+
+
+            st.session_state.empleados = [
+
+                empleado
+
+                for empleado in st.session_state.empleados
+
+                if empleado.nombre != eliminar
+
+            ]
 
 
             st.success(
-                "Registro eliminado"
+                "Empleado eliminado correctamente"
             )
