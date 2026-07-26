@@ -13,6 +13,9 @@ modulo = st.sidebar.selectbox(
     "Menú",
     ("Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4")
 )
+
+# Información en sección Home
+
 if modulo == "Home":
 
     st.title("☕ Coffee Shop Manager")
@@ -37,14 +40,10 @@ with col2:
     
     # Descripción del proyecto
 
-    Esta aplicación fue desarrollada como parte del Proyecto 1 del módulo
-    **Python Fundamentals**. Su objetivo es integrar los conceptos
-    fundamentales de programación en Python mediante una interfaz interactiva
-    creada con Streamlit.
-
-    En la aplicación se presentan cuatro ejercicios que abarcan el uso de
-    listas, estructuras de datos, NumPy, funciones, programación orientada a
-    objetos (POO) y operaciones CRUD.
+    Coffee Shop Manager es una aplicación interactiva desarrollada en Streamlit
+    para apoyar la gestión básica de una cafetería. A través de distintos módulos,
+    el usuario podrá registrar ingresos y gastos, administrar productos,
+    realizar cálculos y gestionar información mediante una interfaz sencilla.
     """)
 
     st.markdown("""
@@ -56,27 +55,29 @@ with col2:
     - 🐼 Pandas
     """)
 
+# Información en Ejercicio 1
+
 elif modulo == "Ejercicio 1":
 
-    st.header("Ejercicio 1 - Flujo de caja con listas")
+    st.header("☕ Flujo diario de caja")
 
     st.markdown("""
-    En este ejercicio se registran movimientos financieros utilizando listas.
-    Cada movimiento puede ser un ingreso o un gasto y posteriormente se calcula
-    el saldo final.
+    Registre las ventas y los gastos de la cafetería durante la jornada.
+    El sistema calculará automáticamente el total de ingresos, el total de
+    gastos y el saldo disponible al finalizar el día.
     """)
 
-    # Crear la lista una sola vez
+    # Crear la lista de movimientos la primera vez
     if "movimientos" not in st.session_state:
         st.session_state.movimientos = []
 
     # Entrada de datos
     concepto = st.text_input("Concepto")
     tipo = st.selectbox("Tipo de movimiento", ["Ingreso", "Gasto"])
-    valor = st.number_input("Valor", min_value=0.0)
+    valor = st.number_input("Valor (s/.)", min_value=0.0)
 
-    # Botón
-    if st.button("Agregar movimiento"):
+    # Botón para registar el movimiento
+    if st.button("Registrar movimiento"):
 
         movimiento = {
             "Concepto": concepto,
@@ -86,9 +87,9 @@ elif modulo == "Ejercicio 1":
 
         st.session_state.movimientos.append(movimiento)
 
-        st.success("Movimiento agregado correctamente.")
+        st.success("Movimiento registrado correctamente.")
 
-    # Mostrar tabla
+    # Mostrar los movimientos registrados
     st.subheader("Movimientos registrados")
 
     st.dataframe(st.session_state.movimientos)
@@ -100,17 +101,18 @@ elif modulo == "Ejercicio 1":
     for movimiento in st.session_state.movimientos:
 
         if movimiento["Tipo"] == "Ingreso":
-            total_ingresos += movimiento["Valor"]
+            total_ingresos = movimiento["Valor"]
 
         else:
-            total_gastos += movimiento["Valor"]
+            total_gastos = movimiento["Valor"]
 
     saldo = total_ingresos - total_gastos
 
     # Métricas
-    st.metric("Total ingresos", total_ingresos)
-    st.metric("Total gastos", total_gastos)
-    st.metric("Saldo final", saldo)
+
+    st.metric("Total ingresos", f"s/ {total_ingresos:.2f}")
+    st.metric("Total gastos", f"s/ {total_gastos:.2f}")
+    st.metric("Saldo final", f"s/ {saldo:.2f}")
 
     # Resultado
     if saldo >= 0:
