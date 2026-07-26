@@ -401,36 +401,36 @@ elif modulo == "Ejercicio 4":
 
     if st.button("Crear empleado"):
 
-    if nombre_empleado.strip() == "":
-
-        st.error(
-            "Debe ingresar un nombre de empleado."
-        )
-
-    else:
-        try:
-
-            empleado = Empleado(
-                nombre_empleado,
-                salario,
-                bono,
-                descuento
+        if nombre_empleado.strip() == "":
+    
+            st.error(
+                "Debe ingresar un nombre de empleado."
             )
 
-
-            st.session_state.empleados.append(
-                empleado
-            )
-
-
-            st.success(
-                "Empleado registrado correctamente"
-            )
-
-
-        except ValueError as error:
-
-            st.error(error)
+        else:
+            try:
+    
+                empleado = Empleado(
+                    nombre_empleado,
+                    salario,
+                    bono,
+                    descuento
+                )
+    
+    
+                st.session_state.empleados.append(
+                    empleado
+                )
+    
+    
+                st.success(
+                    "Empleado registrado correctamente"
+                )
+    
+    
+            except ValueError as error:
+    
+                st.error(error)
 
 # Formulario
 
