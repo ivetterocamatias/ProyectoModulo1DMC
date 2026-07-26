@@ -221,124 +221,126 @@ elif modulo == "Ejercicio 2":
 
 # Ejercicio 3
 
-# Importar la función desde la librería funciones
-
-from libreria_funciones_proyecto1 import calcular_dpmo
-
-# Aplicación al área de calidad 
-
-st.title("Evaluación de calidad de proceso productivo")
-
-# Creación de histórico
-
-if "historial" not in st.session_state:
-
-    st.session_state.historial = pd.DataFrame(
-        columns=[
-            "Defectos",
-            "Unidades producidas",
-            "Oportunidades por unidad",
-            "DPMO",
-            "Rendimiento (%)"
+elif modulo == "Ejercicio 3":
+    
+    # Importar la función desde la librería funciones
+    
+    from libreria_funciones_proyecto1 import calcular_dpmo
+    
+    # Aplicación al área de calidad 
+    
+    st.title("Evaluación de calidad de proceso productivo")
+    
+    # Creación de histórico
+    
+    if "historial" not in st.session_state:
+    
+        st.session_state.historial = pd.DataFrame(
+            columns=[
+                "Defectos",
+                "Unidades producidas",
+                "Oportunidades por unidad",
+                "DPMO",
+                "Rendimiento (%)"
+            ]
+        )
+    
+    # Selección de funciones
+    
+    st.header("Selector de función")
+    
+    
+    funcion = st.selectbox(
+        "Seleccione una función",
+        [
+            "Calcular DPMO"
         ]
     )
-
-# Selección de funciones
-
-st.header("Selector de función")
-
-
-funcion = st.selectbox(
-    "Seleccione una función",
-    [
-        "Calcular DPMO"
-    ]
-)
-
-# Widgets
-
-st.header("Ingresar datos del proceso")
-
-
-defectos = st.number_input(
-    "Número de defectos encontrados",
-    min_value=0,
-    step=1
-)
-
-
-unidades = st.number_input(
-    "Número de unidades producidas",
-    min_value=1,
-    step=1
-)
-
-
-oportunidades = st.number_input(
-    "Oportunidades de defecto por unidad",
-    min_value=1,
-    step=1
-)
-
-# Ejecutar función
-
-if st.button("Evaluar calidad"):
-
-    try:
-
-        resultado = calcular_dpmo(
-            defectos,
-            unidades,
-            oportunidades
-        )
-
-
-        # Mostrar resultado
-
-        st.success("Cálculo realizado correctamente")
-
-
-        st.write(
-            "DPMO:",
-            resultado["dpmo"]
-        )
-
-
-        st.write(
-            "Rendimiento del proceso:",
-            resultado["rendimiento_pct"],
-            "%"
-        )
-
-
-        # Guardar histórico
-
-        nuevo = pd.DataFrame(
-            {
-                "Defectos": [defectos],
-                "Unidades producidas": [unidades],
-                "Oportunidades por unidad": [oportunidades],
-                "DPMO": [resultado["dpmo"]],
-                "Rendimiento (%)": [resultado["rendimiento_pct"]]
-            }
-        )
-
-
-        st.session_state.historial = pd.concat(
-            [
-                st.session_state.historial,
-                nuevo
-            ],
-            ignore_index=True
-        )
-
-
-    except ValueError as error:
-
-        st.error(error)
-
-# Mostrar histórico
-
-st.header("Histórico de evaluaciones")
-
-st.dataframe(st.session_state.historial)
+    
+    # Widgets
+    
+    st.header("Ingresar datos del proceso")
+    
+    
+    defectos = st.number_input(
+        "Número de defectos encontrados",
+        min_value=0,
+        step=1
+    )
+    
+    
+    unidades = st.number_input(
+        "Número de unidades producidas",
+        min_value=1,
+        step=1
+    )
+    
+    
+    oportunidades = st.number_input(
+        "Oportunidades de defecto por unidad",
+        min_value=1,
+        step=1
+    )
+    
+    # Ejecutar función
+    
+    if st.button("Evaluar calidad"):
+    
+        try:
+    
+            resultado = calcular_dpmo(
+                defectos,
+                unidades,
+                oportunidades
+            )
+    
+    
+            # Mostrar resultado
+    
+            st.success("Cálculo realizado correctamente")
+    
+    
+            st.write(
+                "DPMO:",
+                resultado["dpmo"]
+            )
+    
+    
+            st.write(
+                "Rendimiento del proceso:",
+                resultado["rendimiento_pct"],
+                "%"
+            )
+    
+    
+            # Guardar histórico
+    
+            nuevo = pd.DataFrame(
+                {
+                    "Defectos": [defectos],
+                    "Unidades producidas": [unidades],
+                    "Oportunidades por unidad": [oportunidades],
+                    "DPMO": [resultado["dpmo"]],
+                    "Rendimiento (%)": [resultado["rendimiento_pct"]]
+                }
+            )
+    
+    
+            st.session_state.historial = pd.concat(
+                [
+                    st.session_state.historial,
+                    nuevo
+                ],
+                ignore_index=True
+            )
+    
+    
+        except ValueError as error:
+    
+            st.error(error)
+    
+    # Mostrar histórico
+    
+    st.header("Histórico de evaluaciones")
+    
+    st.dataframe(st.session_state.historial)
