@@ -575,7 +575,7 @@ elif modulo == "Ejercicio 4":
                         "Empleado actualizado correctamente."
                     )
 
-                  break
+                    break
     else:
     
         st.info("No hay empleados para actualizar")
