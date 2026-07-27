@@ -527,7 +527,7 @@ elif modulo == "Ejercicio 4":
         seleccionado = st.selectbox(
             "Seleccione empleado",
             nombres,
-            key="actualizar_empleado"
+            key="seleccion_empleado_actualizar"
         )
 
 
@@ -557,7 +557,7 @@ elif modulo == "Ejercicio 4":
         )
 
 
-        if st.button("Actualizar empleado", key="actualizar_empleado"):
+        if st.button("Actualizar empleado", key="boton_actualizar_empleado"):
 
             for empleado in st.session_state.empleados:
 
